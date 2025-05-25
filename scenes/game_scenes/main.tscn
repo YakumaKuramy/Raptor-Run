@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://qtp8naesm6qv"]
+
+[ext_resource type="Script" uid="uid://bi5g3dm4jrf08" path="res://scripts/game_scenes/playground.gd" id="1_ma3g5"]
+[ext_resource type="Texture2D" uid="uid://dvf57heueuoyw" path="res://assets/sprites/Background/background_static.png" id="2_ioeu3"]
+[ext_resource type="PackedScene" uid="uid://cec4dwhi36wh6" path="res://scenes/resource/platform.tscn" id="3_v6yh4"]
+[ext_resource type="PackedScene" uid="uid://bcrmoowf73d77" path="res://scenes/characters/player/player.tscn" id="4_vurax"]
+[ext_resource type="AudioStream" uid="uid://c7l4ghtnqxo1p" path="res://assets/sounds/collect.wav" id="5_v6yh4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6yh4"]
+font_size = 30
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_ma3g5")
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="background_texture" type="Sprite2D" parent="camera"]
+texture = ExtResource("2_ioeu3")
+
+[node name="environment" type="Node2D" parent="."]
+
+[node name="static" type="Node2D" parent="environment"]
+
+[node name="moving" type="Node2D" parent="environment"]
+
+[node name="platform" parent="environment/moving" instance=ExtResource("3_v6yh4")]
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="collect_sound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("5_v6yh4")
+
+[node name="player" parent="." instance=ExtResource("4_vurax")]
+position = Vector2(-151, -150)
+scale = Vector2(0.4, 0.4)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="UI" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="score" type="Label" parent="HUD/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.869
+anchor_top = 0.009
+anchor_right = 0.955
+anchor_bottom = 0.048
+offset_left = 76.52
+offset_top = 0.28
+offset_right = -0.600098
+offset_bottom = -18.84
+grow_horizontal = 0
+text = "Score: 1000"
+label_settings = SubResource("LabelSettings_v6yh4")
+horizontal_alignment = 2
