@@ -2,7 +2,7 @@ extends Area2D
 
 @export var value: float = 10.0
 
-@onready var game: Node2D = $"/root/main"
+@onready var game: Node2D = $"/root/pixel_game"
 @onready var animation: AnimatedSprite2D = $animation
 
 func _ready() -> void:

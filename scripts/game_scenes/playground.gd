@@ -32,6 +32,16 @@ func _ready() -> void:
 	rng.randomize() 
 	player.player_died.connect(_on_player_died)
 	ground.body_entered.connect(_on_ground_body_entered)
+	var os_name: String = OS.get_name()
+	
+	if os_name == "Android":
+		pass
+	elif os_name == "Web":
+		pass
+	elif os_name == "Windows":
+		pass
+	else:
+		print("SO não identificadoe ")
 
 
 func _process(_delta: float) -> void:

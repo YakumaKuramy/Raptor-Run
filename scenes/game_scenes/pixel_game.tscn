@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=3 uid="uid://qxci7yj3uc2m"]
+
+[ext_resource type="Script" uid="uid://dkjq0yu0hwph5" path="res://scripts/game_scenes/pixel_game.gd" id="1_8twjq"]
+[ext_resource type="Texture2D" uid="uid://dvf57heueuoyw" path="res://assets/sprites/Background/background_static.png" id="2_urdiv"]
+[ext_resource type="Script" uid="uid://ck4tdxioyctdd" path="res://scripts/resources/play_area.gd" id="3_56xp5"]
+[ext_resource type="PackedScene" uid="uid://cec4dwhi36wh6" path="res://scenes/resource/platform.tscn" id="4_wqo2t"]
+[ext_resource type="AudioStream" uid="uid://c7l4ghtnqxo1p" path="res://assets/sounds/collect.wav" id="5_28w5x"]
+[ext_resource type="PackedScene" uid="uid://u0xtsifnnjb" path="res://scenes/characters/player/pixel_player.tscn" id="6_8twjq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0f2d"]
+size = Vector2(1800, 2000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6yh4"]
+size = Vector2(3000, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6yh4"]
+font_size = 30
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0f2d"]
+font_size = 30
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vurax"]
+font_size = 32
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[node name="pixel_game" type="Node2D"]
+script = ExtResource("1_8twjq")
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="background_texture" type="Sprite2D" parent="camera"]
+texture = ExtResource("2_urdiv")
+
+[node name="environment" type="Node2D" parent="."]
+
+[node name="static" type="Node2D" parent="environment"]
+position = Vector2(0, 29)
+
+[node name="play_area" type="Area2D" parent="environment/static"]
+collision_mask = 4
+script = ExtResource("3_56xp5")
+
+[node name="collision" type="CollisionShape2D" parent="environment/static/play_area"]
+shape = SubResource("RectangleShape2D_i0f2d")
+
+[node name="Line2D" type="Line2D" parent="environment/static/play_area"]
+position = Vector2(-900, -1000)
+points = PackedVector2Array(-4, 3, 1796, 3, 1796, 2003, -4, 2003, -4, 3)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="ground" type="Area2D" parent="environment/static"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="collision" type="CollisionShape2D" parent="environment/static/ground"]
+position = Vector2(0, 1010)
+shape = SubResource("RectangleShape2D_v6yh4")
+
+[node name="moving" type="Node2D" parent="environment"]
+
+[node name="platform" parent="environment/moving" instance=ExtResource("4_wqo2t")]
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="collect_sound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("5_28w5x")
+
+[node name="pixel_player" parent="." instance=ExtResource("6_8twjq")]
+position = Vector2(-60, -134)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="UI" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="score" type="Label" parent="HUD/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.869
+anchor_top = 0.009
+anchor_right = 0.955
+anchor_bottom = 0.048
+offset_left = 76.52
+offset_top = 0.28
+offset_right = -0.600098
+offset_bottom = -18.84
+grow_horizontal = 0
+text = "Score: 1000"
+label_settings = SubResource("LabelSettings_v6yh4")
+horizontal_alignment = 2
+
+[node name="ammo" type="Label" parent="HUD/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.861
+anchor_top = 0.058
+anchor_right = 0.955
+anchor_bottom = 0.097
+offset_left = -0.120239
+offset_top = 0.359997
+offset_right = -0.60022
+offset_bottom = 0.239998
+grow_horizontal = 0
+text = "Ammo: 1000"
+label_settings = SubResource("LabelSettings_i0f2d")
+horizontal_alignment = 2
+
+[node name="game_over" type="Label" parent="HUD/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -46.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over. You scored %s points!
+Press \"Jump\" to restart."
+label_settings = SubResource("LabelSettings_vurax")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @onready var animation: AnimatedSprite2D = $animation
 @onready var hit_box: Area2D = $hit_box
-@onready var player: CharacterBody2D = $"/root/main/player"
+@onready var player: CharacterBody2D = $"/root/pixel_game/pixel_player"
 @onready var death_sound: AudioStreamPlayer = $death_sound
 
 var active: bool = false

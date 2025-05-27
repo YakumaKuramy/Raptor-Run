@@ -49,6 +49,12 @@ script = ExtResource("3_vurax")
 [node name="collision" type="CollisionShape2D" parent="environment/static/play_area"]
 shape = SubResource("RectangleShape2D_i0f2d")
 
+[node name="Line2D" type="Line2D" parent="environment/static/play_area"]
+position = Vector2(-900, -1000)
+points = PackedVector2Array(-4, 3, 1796, 3, 1796, 2003, -4, 2003, -4, 3)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+
 [node name="ground" type="Area2D" parent="environment/static"]
 collision_layer = 0
 collision_mask = 2
