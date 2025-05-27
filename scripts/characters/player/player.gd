@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_attack") and ammo > 0:
+	if event.is_action_pressed("ui_attack") and ammo > 0 and active == true:
 		var projectile_instance: AnimatableBody2D = projectile.instantiate()
 		projectile_instance.position = projectile_position.global_position
 		game.add_child(projectile_instance)

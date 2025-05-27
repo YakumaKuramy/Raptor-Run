@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Raptor Run"
-run/main_scene="uid://qtp8naesm6qv"
+run/main_scene="uid://bmxtagpuqwvgm"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+BGM="*res://scenes/resource/gerals/background_music.tscn"
 
 [display]
 
@@ -86,3 +90,4 @@ ui_attack={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

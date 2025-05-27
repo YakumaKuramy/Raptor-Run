@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmxtagpuqwvgm"]
+
+[ext_resource type="Texture2D" uid="uid://dvf57heueuoyw" path="res://assets/sprites/Background/background_static.png" id="1_mjr1w"]
+[ext_resource type="Script" uid="uid://c35e0fagi1md7" path="res://scripts/system/menu.gd" id="2_37pcu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjr1w"]
+font_size = 128
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37pcu"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mjr1w")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margins" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="gerals" type="VBoxContainer" parent="UI/margins"]
+layout_mode = 2
+
+[node name="game_name" type="Label" parent="UI/margins/gerals"]
+layout_mode = 2
+text = "Raptor Run"
+label_settings = SubResource("LabelSettings_mjr1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="margins" type="MarginContainer" parent="UI/margins/gerals"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="buttons" type="VBoxContainer" parent="UI/margins/gerals/margins"]
+layout_mode = 2
+theme_override_constants/separation = 25
+script = ExtResource("2_37pcu")
+
+[node name="start_button" type="Button" parent="UI/margins/gerals/margins/buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_color = Color(1, 0.929788, 0.917735, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_37pcu")
+text = "Start Game"
+
+[node name="exit_button" type="Button" parent="UI/margins/gerals/margins/buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_color = Color(1, 0.929788, 0.917735, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_37pcu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_37pcu")
+text = "Exit"
