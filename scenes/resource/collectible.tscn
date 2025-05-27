@@ -147,6 +147,7 @@ animations = [{
 size = Vector2(130, 90)
 
 [node name="collectible" type="Area2D"]
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_gp7xc")
 

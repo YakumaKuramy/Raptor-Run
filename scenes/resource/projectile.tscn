@@ -106,7 +106,8 @@ size = Vector2(60, 30)
 
 [node name="projectile" type="AnimatableBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
+sync_to_physics = false
 script = ExtResource("1_sgsns")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]

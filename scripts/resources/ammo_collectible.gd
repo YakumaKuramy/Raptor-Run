@@ -10,11 +10,7 @@ func _ready() -> void:
 	self.body_entered.connect(_on_body_entered)
 
 
-func _process(_delta: float) -> void:
-	pass
-
-
-func _on_body_entered(body: CharacterBody2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player.add_ammo(value)
 		animation.play("collected")
