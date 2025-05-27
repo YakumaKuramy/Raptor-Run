@@ -1,13 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://qtp8naesm6qv"]
+[gd_scene load_steps=12 format=3 uid="uid://qtp8naesm6qv"]
 
 [ext_resource type="Script" uid="uid://bi5g3dm4jrf08" path="res://scripts/game_scenes/playground.gd" id="1_ma3g5"]
 [ext_resource type="Texture2D" uid="uid://dvf57heueuoyw" path="res://assets/sprites/Background/background_static.png" id="2_ioeu3"]
 [ext_resource type="PackedScene" uid="uid://cec4dwhi36wh6" path="res://scenes/resource/platform.tscn" id="3_v6yh4"]
+[ext_resource type="Script" uid="uid://ck4tdxioyctdd" path="res://scripts/resources/play_area.gd" id="3_vurax"]
 [ext_resource type="PackedScene" uid="uid://bcrmoowf73d77" path="res://scenes/characters/player/player.tscn" id="4_vurax"]
 [ext_resource type="AudioStream" uid="uid://c7l4ghtnqxo1p" path="res://assets/sounds/collect.wav" id="5_v6yh4"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0f2d"]
+size = Vector2(1800, 2000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6yh4"]
+size = Vector2(3000, 20)
+
 [sub_resource type="LabelSettings" id="LabelSettings_v6yh4"]
 font_size = 30
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0f2d"]
+font_size = 30
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vurax"]
+font_size = 32
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
@@ -23,6 +40,22 @@ texture = ExtResource("2_ioeu3")
 [node name="environment" type="Node2D" parent="."]
 
 [node name="static" type="Node2D" parent="environment"]
+position = Vector2(0, 29)
+
+[node name="play_area" type="Area2D" parent="environment/static"]
+collision_mask = 4
+script = ExtResource("3_vurax")
+
+[node name="collision" type="CollisionShape2D" parent="environment/static/play_area"]
+shape = SubResource("RectangleShape2D_i0f2d")
+
+[node name="ground" type="Area2D" parent="environment/static"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="collision" type="CollisionShape2D" parent="environment/static/ground"]
+position = Vector2(0, 1010)
+shape = SubResource("RectangleShape2D_v6yh4")
 
 [node name="moving" type="Node2D" parent="environment"]
 
@@ -63,3 +96,36 @@ grow_horizontal = 0
 text = "Score: 1000"
 label_settings = SubResource("LabelSettings_v6yh4")
 horizontal_alignment = 2
+
+[node name="ammo" type="Label" parent="HUD/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.861
+anchor_top = 0.058
+anchor_right = 0.955
+anchor_bottom = 0.097
+offset_left = -0.120239
+offset_top = 0.359997
+offset_right = -0.60022
+offset_bottom = 0.239998
+grow_horizontal = 0
+text = "Ammo: 1000"
+label_settings = SubResource("LabelSettings_i0f2d")
+horizontal_alignment = 2
+
+[node name="game_over" type="Label" parent="HUD/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -46.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over. You scored %s points!
+Press \"Jump\" to restart."
+label_settings = SubResource("LabelSettings_vurax")
+horizontal_alignment = 1
+vertical_alignment = 1

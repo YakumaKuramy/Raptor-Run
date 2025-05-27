@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Raptor Run"
+run/main_scene="uid://qtp8naesm6qv"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -25,6 +26,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 player=""
+enemy=""
 
 [input]
 

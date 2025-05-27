@@ -1,20 +1,30 @@
 extends CharacterBody2D
 
+signal  player_died
+
 @export var gravity: float = 1600.0
 @export var jump_power: float = 600.0
 
 @onready var animation: AnimatedSprite2D = $animation
+@onready var collision: CollisionShape2D = $collision
 @onready var jump_sound: AudioStreamPlayer = $jump_sound
+@onready var death_sound: AudioStreamPlayer = $death_sound
+@onready var shoot_sound: AudioStreamPlayer = $shoot_sound
 @onready var camera: Camera2D = $"/root/main/camera"
+@onready var projectile_position: Node2D = $projectile_position
+@onready var game: Node2D = $"/root/main/"
+
+var projectile: PackedScene = preload("res://scenes/resource/projectile.tscn")
 
 var active: bool = true
 var was_jumpin: bool = false
-var jumps_remaining: int = 2
 var jump_pitch: float = 1.0
+var jumps_remaining: int = 2
+var ammo: int = 3
 
 
 func _ready() -> void:
-	pass
+	animation.animation_finished.connect(_on_animation_finhished)
 
 
 func _physics_process(delta: float) -> void:
@@ -41,3 +51,30 @@ func _physics_process(delta: float) -> void:
 			jump_sound.play()
 			jump_pitch += 0.2
 	move_and_slide() 
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_attack") and ammo > 0:
+		var projectile_instance: AnimatableBody2D = projectile.instantiate()
+		projectile_instance.position = projectile_position.global_position
+		game.add_child(projectile_instance)
+		animation.play("shoot")
+		shoot_sound.play()
+		ammo -= 1
+
+
+func die() -> void:
+	death_sound.play()
+	animation.play("death")
+	active = false
+	collision.set_deferred("disabled", true)
+	emit_signal("player_died")
+ 
+
+func _on_animation_finhished() -> void:
+	if animation.animation == "shoot":
+		animation.play("run")
+
+
+func add_ammo(amount: int) -> void:
+	ammo += amount
