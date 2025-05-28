@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://u0xtsifnnjb" path="res://scenes/characters/player/pixel_player.tscn" id="6_8twjq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0f2d"]
-size = Vector2(1800, 2000)
+size = Vector2(225, 250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6yh4"]
-size = Vector2(3000, 20)
+size = Vector2(1000, 20)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v6yh4"]
 font_size = 30
@@ -30,11 +30,13 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="pixel_game" type="Node2D"]
 script = ExtResource("1_8twjq")
+world_sped = 25.0
 
 [node name="camera" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(4, 4)
 
 [node name="background_texture" type="Sprite2D" parent="camera"]
+visible = false
 texture = ExtResource("2_urdiv")
 
 [node name="environment" type="Node2D" parent="."]
@@ -49,18 +51,12 @@ script = ExtResource("3_56xp5")
 [node name="collision" type="CollisionShape2D" parent="environment/static/play_area"]
 shape = SubResource("RectangleShape2D_i0f2d")
 
-[node name="Line2D" type="Line2D" parent="environment/static/play_area"]
-position = Vector2(-900, -1000)
-points = PackedVector2Array(-4, 3, 1796, 3, 1796, 2003, -4, 2003, -4, 3)
-width = 5.0
-default_color = Color(1, 0, 0, 1)
-
 [node name="ground" type="Area2D" parent="environment/static"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="collision" type="CollisionShape2D" parent="environment/static/ground"]
-position = Vector2(0, 1010)
+position = Vector2(0, 139)
 shape = SubResource("RectangleShape2D_v6yh4")
 
 [node name="moving" type="Node2D" parent="environment"]
@@ -73,7 +69,9 @@ shape = SubResource("RectangleShape2D_v6yh4")
 stream = ExtResource("5_28w5x")
 
 [node name="pixel_player" parent="." instance=ExtResource("6_8twjq")]
-position = Vector2(-60, -134)
+position = Vector2(-17, -54)
+gravity = 40.0
+jump_power = 50.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 99

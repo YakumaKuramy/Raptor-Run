@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://dmj5ejtyr25yp"]
+[gd_scene load_steps=36 format=3 uid="uid://dmj5ejtyr25yp"]
 
 [ext_resource type="Script" uid="uid://chd2jkhf7clc1" path="res://scripts/characters/mobs/enemy.gd" id="1_lfjea"]
 [ext_resource type="Texture2D" uid="uid://36bxqw21eei0" path="res://assets/sprites/Dino Enemy/dino_enemy_idle.png" id="1_m7yl2"]
 [ext_resource type="Texture2D" uid="uid://cmn33nygln70s" path="res://assets/sprites/Dino Enemy/dino_enemy_death.png" id="1_xjlfg"]
 [ext_resource type="Texture2D" uid="uid://bkj45jxn87n48" path="res://assets/sprites/Dino Enemy/dino_enemy_walk.png" id="2_xjlfg"]
 [ext_resource type="AudioStream" uid="uid://chnxc7hk7fho1" path="res://assets/sounds/enemy_death.wav" id="5_4ytat"]
+[ext_resource type="Texture2D" uid="uid://b2v2npg62q651" path="res://assets/new_sprites/tilemap/Tilemap/tilemap-characters_packed.png" id="6_rnm2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mayr6"]
 atlas = ExtResource("1_xjlfg")
@@ -186,23 +187,45 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mayr6"]
-size = Vector2(170, 170)
+size = Vector2(24, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjlfg"]
-size = Vector2(160, 200)
+size = Vector2(22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlprp"]
+atlas = ExtResource("6_rnm2s")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23oac"]
+atlas = ExtResource("6_rnm2s")
+region = Rect2(96, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kn44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlprp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23oac")
+}],
+"loop": true,
+"name": &"enemy",
+"speed": 6.0
+}]
 
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
-scale = Vector2(0.4, 0.4)
 collision_layer = 4
 script = ExtResource("1_lfjea")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_8h6jh")
 animation = &"death"
 autoplay = "idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-15, 35)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_mayr6")
 
 [node name="hit_box" type="Area2D" parent="."]
@@ -210,8 +233,12 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="collision" type="CollisionShape2D" parent="hit_box"]
-position = Vector2(-16, 20)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_xjlfg")
 
 [node name="death_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4ytat")
+
+[node name="texture" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6kn44")
+animation = &"enemy"

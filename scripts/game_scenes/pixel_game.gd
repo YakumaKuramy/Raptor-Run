@@ -79,10 +79,12 @@ func spawn_next_platform() -> void:
 	var new_platform: StaticBody2D = available_platforms[platform_index].instantiate()
 	
 	if last_platform_position == Vector2.ZERO:
-		new_platform.position = Vector2(400, 0)
+		new_platform.position = Vector2(108, 0)
 	else:
-		var x: float = last_platform_position.x + rng.randi_range(450, 550)
-		var y: float = clamp(last_platform_position.y + rng.randi_range(-150, 150), 200, 1000)
+		var x: float = last_platform_position.x + rng.randi_range(54, 108)
+		#var x: float = last_platform_position.x + rng.randi_range(450, 550)
+		#var y: float = clamp(last_platform_position.y + rng.randi_range(-150, 150), 200, 1000)
+		var y: float = clamp(last_platform_position.y + rng.randi_range(-50, 50), 20, 10)
 		new_platform.position = Vector2(x, y)
 	
 	moving_environment.add_child(new_platform)

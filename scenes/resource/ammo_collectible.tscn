@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://dq5umrbh2wqwm"]
+[gd_scene load_steps=28 format=3 uid="uid://dq5umrbh2wqwm"]
 
 [ext_resource type="Script" uid="uid://b6fjsfi4hh4ko" path="res://scripts/resources/ammo_collectible.gd" id="1_qk66i"]
 [ext_resource type="Texture2D" uid="uid://yah507yqj2fx" path="res://assets/sprites/Collectible/ammo_collectible_collected.png" id="2_h45xc"]
 [ext_resource type="Texture2D" uid="uid://bb8s8ruft7jcp" path="res://assets/sprites/Collectible/ammo_collectible_idle.png" id="3_qk66i"]
 [ext_resource type="AudioStream" uid="uid://cqpj6jmmig6ce" path="res://assets/sounds/collect_ammo.wav" id="4_qk66i"]
+[ext_resource type="Texture2D" uid="uid://ce70yoji633tg" path="res://assets/new_sprites/tilemap/Tilemap/tilemap_packed.png" id="5_483hh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_483hh"]
 atlas = ExtResource("2_h45xc")
@@ -138,7 +139,29 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3hrf"]
-size = Vector2(130, 90)
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diba1"]
+atlas = ExtResource("5_483hh")
+region = Rect2(198, 128, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7a6l"]
+atlas = ExtResource("5_483hh")
+region = Rect2(216, 128, 18, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdasj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diba1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7a6l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="collectible" type="Area2D"]
 collision_layer = 0
@@ -146,12 +169,18 @@ collision_mask = 2
 script = ExtResource("1_qk66i")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_688aw")
-animation = &"idle"
+animation = &"collected"
 autoplay = "idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_a3hrf")
 
 [node name="pickup_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qk66i")
+
+[node name="texture" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gdasj")
+autoplay = "default"

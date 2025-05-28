@@ -4,7 +4,7 @@ extends Area2D
 
 @onready var animation: AnimatedSprite2D = $animation
 @onready var pickup_sound: AudioStreamPlayer = $pickup_sound
-@onready var player: CharacterBody2D = $"/root/main/player"
+@onready var player: CharacterBody2D = $"/root/pixel_game/pixel_player"
 
 func _ready() -> void:
 	self.body_entered.connect(_on_body_entered)

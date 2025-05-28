@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cpm7lacsgjloc"]
+[gd_scene load_steps=25 format=3 uid="uid://cpm7lacsgjloc"]
 
 [ext_resource type="Texture2D" uid="uid://deldgtbvt0ms" path="res://assets/sprites/Collectible/collectible_idle.png" id="1_7l7a3"]
 [ext_resource type="Script" uid="uid://bs0836uwfr1d0" path="res://scripts/resources/collectible.gd" id="1_gp7xc"]
 [ext_resource type="Texture2D" uid="uid://v4rhurf85e74" path="res://assets/sprites/Collectible/collectible_collected.png" id="1_nqogt"]
+[ext_resource type="Texture2D" uid="uid://ce70yoji633tg" path="res://assets/new_sprites/tilemap/Tilemap/tilemap_packed.png" id="4_7h0us"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpmub"]
 atlas = ExtResource("1_nqogt")
@@ -144,7 +145,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3hrf"]
-size = Vector2(130, 90)
+size = Vector2(14, 13)
 
 [node name="collectible" type="Area2D"]
 collision_layer = 0
@@ -152,10 +153,17 @@ collision_mask = 2
 script = ExtResource("1_gp7xc")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_688aw")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.324425
 
 [node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_a3hrf")
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("4_7h0us")
+region_enabled = true
+region_rect = Rect2(126, 54, 18, 18)
