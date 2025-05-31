@@ -1,16 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://h1dd7eof1m08"]
+[gd_scene load_steps=4 format=3 uid="uid://h1dd7eof1m08"]
 
-[ext_resource type="Texture2D" uid="uid://dtqw18vpkoix" path="res://assets/new_sprites/tilemap/Tilemap/tilemap-backgrounds_packed.png" id="1_rprol"]
+[ext_resource type="Texture2D" uid="uid://7woccmciopnu" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Backgrounds/Default/background_clouds.png" id="1_rprol"]
+[ext_resource type="Script" uid="uid://m1gq55ulfn8g" path="res://scripts/resources/background.gd" id="1_x08k8"]
+[ext_resource type="Texture2D" uid="uid://cfv0dcuwxm163" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Backgrounds/Default/background_solid_sky.png" id="2_b4sxx"]
 
 [node name="background" type="ParallaxBackground"]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = ExtResource("1_x08k8")
 
 [node name="parallax_layer" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(96, 0)
+position = Vector2(0, 91.5)
+motion_mirroring = Vector2(256, 0)
+
+[node name="sky_texture" type="Sprite2D" parent="parallax_layer"]
+visible = false
+position = Vector2(128, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("2_b4sxx")
 
 [node name="texture" type="Sprite2D" parent="parallax_layer"]
+position = Vector2(0, -91.5)
 texture = ExtResource("1_rprol")
 centered = false
-region_enabled = true
 region_rect = Rect2(0, 0, 96, 72)

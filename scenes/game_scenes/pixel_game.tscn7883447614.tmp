@@ -1,16 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://qxci7yj3uc2m"]
+[gd_scene load_steps=14 format=3 uid="uid://qxci7yj3uc2m"]
 
 [ext_resource type="Script" uid="uid://dkjq0yu0hwph5" path="res://scripts/game_scenes/pixel_game.gd" id="1_8twjq"]
+[ext_resource type="Texture2D" uid="uid://dvf57heueuoyw" path="res://assets/sprites/Background/background_static.png" id="2_urdiv"]
 [ext_resource type="Script" uid="uid://ck4tdxioyctdd" path="res://scripts/resources/play_area.gd" id="3_56xp5"]
 [ext_resource type="PackedScene" uid="uid://h1dd7eof1m08" path="res://scenes/resource/background.tscn" id="3_wqo2t"]
 [ext_resource type="PackedScene" uid="uid://cec4dwhi36wh6" path="res://scenes/resource/platform.tscn" id="4_wqo2t"]
 [ext_resource type="AudioStream" uid="uid://c7l4ghtnqxo1p" path="res://assets/sounds/collect.wav" id="5_28w5x"]
 [ext_resource type="Texture2D" uid="uid://jo413pxr8us1" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Tiles/Default/spikes.png" id="5_56xp5"]
 [ext_resource type="PackedScene" uid="uid://u0xtsifnnjb" path="res://scenes/characters/player/pixel_player.tscn" id="6_8twjq"]
-[ext_resource type="Texture2D" uid="uid://c7bsl51y1rw1j" path="res://assets/new_sprites/ui/playdate/default/playdate_button_a.png" id="8_kns12"]
-[ext_resource type="Texture2D" uid="uid://uuv0d03h08gp" path="res://assets/new_sprites/ui/playdate/default/playdate_button_a_outline.png" id="9_lhpie"]
-[ext_resource type="Texture2D" uid="uid://cr3pyikjqto34" path="res://assets/new_sprites/ui/playdate/default/playdate_button_b.png" id="10_6qr1t"]
-[ext_resource type="Texture2D" uid="uid://c1jvwaqxhe7cr" path="res://assets/new_sprites/ui/playdate/default/playdate_button_b_outline.png" id="11_n45rr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0f2d"]
 size = Vector2(1000, 2000)
@@ -37,12 +34,17 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_8twjq")
 
 [node name="background" parent="." instance=ExtResource("3_wqo2t")]
+visible = false
 
 [node name="camera" type="Camera2D" parent="."]
-position = Vector2(480, 270)
+position = Vector2(192, 74)
+
+[node name="background_texture" type="Sprite2D" parent="camera"]
+visible = false
+texture = ExtResource("2_urdiv")
 
 [node name="environment" type="Node2D" parent="."]
-position = Vector2(675, 414)
+position = Vector2(195, 144)
 
 [node name="static" type="Node2D" parent="environment"]
 position = Vector2(0, 29)
@@ -76,13 +78,12 @@ stretch_mode = 1
 [node name="platform" parent="environment/moving" instance=ExtResource("4_wqo2t")]
 
 [node name="sounds" type="Node2D" parent="."]
-position = Vector2(480, 270)
 
 [node name="collect_sound" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("5_28w5x")
 
 [node name="pixel_player" parent="." instance=ExtResource("6_8twjq")]
-position = Vector2(648, 344)
+position = Vector2(168, 74)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 99
@@ -143,22 +144,3 @@ Press \"Jump\" to restart."
 label_settings = SubResource("LabelSettings_vurax")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="UI_MOBILE" type="Control" parent="HUD"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="button_jump" type="TouchScreenButton" parent="HUD/UI_MOBILE"]
-position = Vector2(60, 359)
-scale = Vector2(2, 2)
-texture_normal = ExtResource("8_kns12")
-texture_pressed = ExtResource("9_lhpie")
-
-[node name="button_atack" type="TouchScreenButton" parent="HUD/UI_MOBILE"]
-position = Vector2(780, 359)
-scale = Vector2(2, 2)
-texture_normal = ExtResource("10_6qr1t")
-texture_pressed = ExtResource("11_n45rr")

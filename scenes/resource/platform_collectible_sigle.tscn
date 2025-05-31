@@ -21,3 +21,5 @@ shape = SubResource("RectangleShape2D_88ygq")
 
 [node name="collectible" parent="." instance=ExtResource("2_mgww6")]
 position = Vector2(0, -50)
+amplitude = 25.0
+duration = 2.0

@@ -25,13 +25,20 @@ var ammo: int = 3
 
 func _ready() -> void:
 	animation.animation_finished.connect(_on_animation_finhished)
+	
 
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	
 	if active:
-		camera.position = position
+		var camera_target_position: Vector2 = camera.position
+		camera_target_position.x = position.x
+		if abs(position.y - camera.position.y) > 50:
+			camera_target_position.y = lerp(camera.position.y, position.y, 0.05)
+		
+		camera.position = camera_target_position
+		#camera.position = position
 		if was_jumpin and is_on_floor():
 			was_jumpin = false
 			jumps_remaining = 2

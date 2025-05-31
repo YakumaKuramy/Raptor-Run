@@ -20,26 +20,26 @@ position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_88ygq")
 
 [node name="collectible" parent="." instance=ExtResource("2_tplet")]
-position = Vector2(-77, -21)
+position = Vector2(-77, -50)
 amplitude = 20.0
 duration = 2.0
 
 [node name="collectible2" parent="." instance=ExtResource("2_tplet")]
-position = Vector2(-39, -21)
+position = Vector2(-39, -50)
 amplitude = 20.0
 duration = 2.0
 
 [node name="collectible3" parent="." instance=ExtResource("2_tplet")]
-position = Vector2(0, -21)
+position = Vector2(0, -50)
 amplitude = 20.0
 duration = 2.0
 
 [node name="collectible4" parent="." instance=ExtResource("2_tplet")]
-position = Vector2(38, -21)
+position = Vector2(38, -50)
 amplitude = 20.0
 duration = 2.0
 
 [node name="collectible5" parent="." instance=ExtResource("2_tplet")]
-position = Vector2(77, -21)
+position = Vector2(77, -50)
 amplitude = 20.0
 duration = 2.0

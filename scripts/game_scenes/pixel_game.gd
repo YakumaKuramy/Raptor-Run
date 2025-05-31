@@ -13,6 +13,7 @@ signal game_over
 @onready var player: CharacterBody2D = $pixel_player
 @onready var ground: Area2D = $environment/static/ground
 
+
 var platform: PackedScene = preload("res://scenes/resource/platform.tscn")
 var platform_enemy: PackedScene = preload("res://scenes/resource/platform_enemy.tscn")
 var platform_collectible_single: PackedScene = preload("res://scenes/resource/platform_collectible_sigle.tscn")
@@ -20,6 +21,7 @@ var platform_collectible_row: PackedScene = preload("res://scenes/resource/platf
 var platform_collectible_rainbow: PackedScene = preload("res://scenes/resource/platform_collectible_rainbow.tscn")
 var platform_collectible_ammo: PackedScene = preload("res://scenes/resource/platform_collectible_ammo.tscn")
  
+
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var last_platform_position: Vector2 = Vector2.ZERO
 var next_spawn_time: float = 0.0
@@ -45,6 +47,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	
 	if not player.active:
 		if Input.is_action_just_pressed("ui_up"):
 			get_tree().reload_current_scene()
@@ -79,10 +82,10 @@ func spawn_next_platform() -> void:
 	var new_platform: StaticBody2D = available_platforms[platform_index].instantiate()
 	
 	if last_platform_position == Vector2.ZERO:
-		new_platform.position = Vector2(200, 100)
+		new_platform.position = Vector2(200, 150)
 	else:
-		var x: float = last_platform_position.x + rng.randi_range(450, 550)
-		var y: float = clamp(last_platform_position.y + rng.randi_range(-150, 150), 200, 1000)
+		var x: float = last_platform_position.x + rng.randi_range(300, 400)
+		var y: float = clamp(last_platform_position.y + rng.randi_range(-150, 150), 200, 400)
 		new_platform.position = Vector2(x, y)
 	
 	moving_environment.add_child(new_platform)
