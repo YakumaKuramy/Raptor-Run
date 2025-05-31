@@ -1,21 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwx7q2ljpk6fo"]
 
-[ext_resource type="Texture2D" uid="uid://ce70yoji633tg" path="res://assets/new_sprites/tilemap/Tilemap/tilemap_packed.png" id="1_mgww6"]
+[ext_resource type="Texture2D" uid="uid://87b2r4yc0wba" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Tiles/Default/block_coin_active.png" id="1_mgww6"]
 [ext_resource type="PackedScene" uid="uid://cpm7lacsgjloc" path="res://scenes/resource/collectible.tscn" id="2_mgww6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88ygq"]
-size = Vector2(54, 18)
+size = Vector2(193, 64)
 
 [node name="platform" type="StaticBody2D"]
 
-[node name="texture" type="Sprite2D" parent="."]
+[node name="texture" type="TextureRect" parent="."]
+offset_left = -96.0
+offset_right = 97.0
+offset_bottom = 64.0
 texture = ExtResource("1_mgww6")
-region_enabled = true
-region_rect = Rect2(144, 36, 54, 18)
+stretch_mode = 1
 
 [node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 32)
 shape = SubResource("RectangleShape2D_88ygq")
 
 [node name="collectible" parent="." instance=ExtResource("2_mgww6")]
-position = Vector2(0, -21)
-scale = Vector2(0.3, 0.3)
+position = Vector2(0, -50)

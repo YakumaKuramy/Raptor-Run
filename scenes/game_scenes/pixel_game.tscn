@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://qxci7yj3uc2m"]
+[gd_scene load_steps=16 format=3 uid="uid://qxci7yj3uc2m"]
 
 [ext_resource type="Script" uid="uid://dkjq0yu0hwph5" path="res://scripts/game_scenes/pixel_game.gd" id="1_8twjq"]
 [ext_resource type="Texture2D" uid="uid://dvf57heueuoyw" path="res://assets/sprites/Background/background_static.png" id="2_urdiv"]
 [ext_resource type="Script" uid="uid://ck4tdxioyctdd" path="res://scripts/resources/play_area.gd" id="3_56xp5"]
+[ext_resource type="PackedScene" uid="uid://h1dd7eof1m08" path="res://scenes/resource/background.tscn" id="3_wqo2t"]
 [ext_resource type="Texture2D" uid="uid://ce70yoji633tg" path="res://assets/new_sprites/tilemap/Tilemap/tilemap_packed.png" id="4_urdiv"]
 [ext_resource type="PackedScene" uid="uid://cec4dwhi36wh6" path="res://scenes/resource/platform.tscn" id="4_wqo2t"]
 [ext_resource type="AudioStream" uid="uid://c7l4ghtnqxo1p" path="res://assets/sounds/collect.wav" id="5_28w5x"]
@@ -42,14 +43,18 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_8twjq")
 world_sped = 50.0
 
+[node name="background" parent="." instance=ExtResource("3_wqo2t")]
+visible = false
+
 [node name="camera" type="Camera2D" parent="."]
-zoom = Vector2(8, 8)
+position = Vector2(192, 74)
 
 [node name="background_texture" type="Sprite2D" parent="camera"]
 visible = false
 texture = ExtResource("2_urdiv")
 
 [node name="environment" type="Node2D" parent="."]
+position = Vector2(195, 144)
 
 [node name="static" type="Node2D" parent="environment"]
 position = Vector2(0, 29)
@@ -85,9 +90,7 @@ layer_0/tile_data = PackedInt32Array(-65536, 524288, 3, -28, 524288, 3, -27, 524
 stream = ExtResource("5_28w5x")
 
 [node name="pixel_player" parent="." instance=ExtResource("6_8twjq")]
-position = Vector2(-17, -54)
-gravity = 150.0
-jump_power = 75.0
+position = Vector2(168, 74)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 99

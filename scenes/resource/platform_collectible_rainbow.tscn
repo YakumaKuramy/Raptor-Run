@@ -1,37 +1,45 @@
 [gd_scene load_steps=4 format=3 uid="uid://deshm1hv1uo8u"]
 
-[ext_resource type="Texture2D" uid="uid://ce70yoji633tg" path="res://assets/new_sprites/tilemap/Tilemap/tilemap_packed.png" id="1_10pys"]
+[ext_resource type="Texture2D" uid="uid://cadg4wequ4nc5" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Tiles/Default/block_empty.png" id="1_10pys"]
 [ext_resource type="PackedScene" uid="uid://cpm7lacsgjloc" path="res://scenes/resource/collectible.tscn" id="2_6co1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88ygq"]
-size = Vector2(54, 18)
+size = Vector2(192, 64)
 
 [node name="platform" type="StaticBody2D"]
 
-[node name="texture" type="Sprite2D" parent="."]
+[node name="texture" type="TextureRect" parent="."]
+offset_left = -95.0
+offset_right = 97.0
+offset_bottom = 64.0
 texture = ExtResource("1_10pys")
-region_enabled = true
-region_rect = Rect2(18, 72, 54, 18)
+stretch_mode = 1
 
 [node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(1, 32)
 shape = SubResource("RectangleShape2D_88ygq")
 
 [node name="collectible" parent="." instance=ExtResource("2_6co1j")]
-position = Vector2(-25, -18)
-scale = Vector2(0.3, 0.3)
+position = Vector2(-76, -49)
+amplitude = 20.0
+duration = 2.0
 
 [node name="collectible2" parent="." instance=ExtResource("2_6co1j")]
-position = Vector2(-13, -25)
-scale = Vector2(0.3, 0.3)
+position = Vector2(-35, -81)
+amplitude = 20.0
+duration = 2.0
 
 [node name="collectible3" parent="." instance=ExtResource("2_6co1j")]
-position = Vector2(0, -30)
-scale = Vector2(0.3, 0.3)
+position = Vector2(0, -112)
+amplitude = 20.0
+duration = 2.0
 
 [node name="collectible4" parent="." instance=ExtResource("2_6co1j")]
-position = Vector2(13, -25)
-scale = Vector2(0.3, 0.3)
+position = Vector2(38, -83)
+amplitude = 20.0
+duration = 2.0
 
 [node name="collectible5" parent="." instance=ExtResource("2_6co1j")]
-position = Vector2(25, -18)
-scale = Vector2(0.3, 0.3)
+position = Vector2(78, -50)
+amplitude = 20.0
+duration = 2.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://h1dd7eof1m08"]
+
+[ext_resource type="Texture2D" uid="uid://dtqw18vpkoix" path="res://assets/new_sprites/tilemap/Tilemap/tilemap-backgrounds_packed.png" id="1_rprol"]
+
+[node name="background" type="ParallaxBackground"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="parallax_layer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(96, 0)
+
+[node name="texture" type="Sprite2D" parent="parallax_layer"]
+texture = ExtResource("1_rprol")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 96, 72)

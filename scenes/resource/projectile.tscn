@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cnmxkorwpds10" path="res://assets/sprites/Projectile/projectile_hit.png" id="1_8y8ri"]
 [ext_resource type="Script" uid="uid://detrap1mxyqdn" path="res://scripts/resources/projectile.gd" id="1_sgsns"]
 [ext_resource type="Texture2D" uid="uid://cwb6dqibv0rdh" path="res://assets/sprites/Projectile/projectile_idle.png" id="2_sgsns"]
-[ext_resource type="Texture2D" uid="uid://ce70yoji633tg" path="res://assets/new_sprites/tilemap/Tilemap/tilemap_packed.png" id="4_u2hsc"]
+[ext_resource type="Texture2D" uid="uid://bl2mrgdit4g4y" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Tiles/Default/fireball.png" id="4_u2hsc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2hsc"]
 atlas = ExtResource("1_8y8ri")
@@ -124,5 +124,4 @@ shape = SubResource("RectangleShape2D_8y8ri")
 [node name="texture" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("4_u2hsc")
-region_enabled = true
 region_rect = Rect2(216, 126, 18, 18)

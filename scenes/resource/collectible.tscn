@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://deldgtbvt0ms" path="res://assets/sprites/Collectible/collectible_idle.png" id="1_7l7a3"]
 [ext_resource type="Script" uid="uid://bs0836uwfr1d0" path="res://scripts/resources/collectible.gd" id="1_gp7xc"]
 [ext_resource type="Texture2D" uid="uid://v4rhurf85e74" path="res://assets/sprites/Collectible/collectible_collected.png" id="1_nqogt"]
-[ext_resource type="Texture2D" uid="uid://ce70yoji633tg" path="res://assets/new_sprites/tilemap/Tilemap/tilemap_packed.png" id="4_7h0us"]
+[ext_resource type="Texture2D" uid="uid://kd6co3bvahcc" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Tiles/Default/star.png" id="4_7h0us"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpmub"]
 atlas = ExtResource("1_nqogt")
@@ -144,8 +144,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3hrf"]
-size = Vector2(14, 13)
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h0us"]
+radius = 19.0263
 
 [node name="collectible" type="Area2D"]
 collision_layer = 0
@@ -160,10 +160,7 @@ autoplay = "idle"
 frame_progress = 0.324425
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_a3hrf")
+shape = SubResource("CircleShape2D_7h0us")
 
 [node name="texture" type="Sprite2D" parent="."]
 texture = ExtResource("4_7h0us")
-region_enabled = true
-region_rect = Rect2(126, 54, 18, 18)

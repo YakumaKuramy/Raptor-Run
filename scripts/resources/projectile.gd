@@ -4,6 +4,7 @@ var death_time: float = 0.0
 
 func _ready() -> void:
 	death_time = Time.get_ticks_msec() + 2000
+	rotate_forever(self)
 
 
 func _process(_delta: float) -> void:
@@ -19,4 +20,9 @@ func  _physics_process(delta: float) -> void:
 		queue_free()
 		if collision.get_collider().is_in_group("enemy"):
 			collision.get_collider().die()
-		
+
+
+func rotate_forever(target: Node) -> void:
+	var tween: Tween = create_tween()
+	tween.set_loops()
+	tween.tween_property(target, "rotation_degrees", 360.0, 2.0).as_relative().from(0.0)

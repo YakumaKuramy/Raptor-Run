@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cmn33nygln70s" path="res://assets/sprites/Dino Enemy/dino_enemy_death.png" id="1_xjlfg"]
 [ext_resource type="Texture2D" uid="uid://bkj45jxn87n48" path="res://assets/sprites/Dino Enemy/dino_enemy_walk.png" id="2_xjlfg"]
 [ext_resource type="AudioStream" uid="uid://chnxc7hk7fho1" path="res://assets/sounds/enemy_death.wav" id="5_4ytat"]
-[ext_resource type="Texture2D" uid="uid://b2v2npg62q651" path="res://assets/new_sprites/tilemap/Tilemap/tilemap-characters_packed.png" id="6_rnm2s"]
+[ext_resource type="Texture2D" uid="uid://c8f38yswxbfw8" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Enemies/Default/frog_idle.png" id="6_q4ot6"]
+[ext_resource type="Texture2D" uid="uid://c0nwi8f4oth80" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Enemies/Default/frog_jump.png" id="7_nrbv5"]
+[ext_resource type="Texture2D" uid="uid://bjojajo6hc1mb" path="res://assets/new_sprites/kenney_new-platformer-pack-1.0/Sprites/Enemies/Default/frog_rest.png" id="8_nrbv5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mayr6"]
 atlas = ExtResource("1_xjlfg")
@@ -187,30 +189,66 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mayr6"]
-size = Vector2(24, 21)
+size = Vector2(64, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjlfg"]
 size = Vector2(22, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vlprp"]
-atlas = ExtResource("6_rnm2s")
-region = Rect2(72, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_23oac"]
-atlas = ExtResource("6_rnm2s")
-region = Rect2(96, 48, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6kn44"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vlprp")
+"texture": ExtResource("6_q4ot6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_23oac")
+"texture": ExtResource("6_q4ot6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q4ot6")
 }],
 "loop": true,
-"name": &"enemy",
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_q4ot6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q4ot6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q4ot6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nrbv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nrbv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nrbv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nrbv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nrbv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nrbv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q4ot6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q4ot6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q4ot6")
+}],
+"loop": true,
+"name": &"jump",
 "speed": 6.0
 }]
 
@@ -225,7 +263,7 @@ animation = &"death"
 autoplay = "idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_mayr6")
 
 [node name="hit_box" type="Area2D" parent="."]
@@ -241,4 +279,5 @@ stream = ExtResource("5_4ytat")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6kn44")
-animation = &"enemy"
+animation = &"jump"
+autoplay = "jump"
