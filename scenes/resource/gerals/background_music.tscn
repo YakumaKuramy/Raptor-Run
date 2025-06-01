@@ -6,3 +6,4 @@
 
 [node name="backgrund_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_bu4nq")
+autoplay = true
