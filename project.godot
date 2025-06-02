@@ -1,3 +1,11 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [application]
@@ -10,6 +18,7 @@ config/icon="uid://kd6co3bvahcc"
 [autoload]
 
 BGM="*res://scenes/resource/gerals/background_music.tscn"
+TransitionScreen="*res://scenes/resource/gerals/transition_screen.tscn"
 
 [display]
 

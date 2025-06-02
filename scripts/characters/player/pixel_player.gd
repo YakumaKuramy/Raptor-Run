@@ -25,7 +25,6 @@ var ammo: int = 3
 
 func _ready() -> void:
 	animation.animation_finished.connect(_on_animation_finhished)
-	
 
 
 func _physics_process(delta: float) -> void:
@@ -85,3 +84,4 @@ func _on_animation_finhished() -> void:
 
 func add_ammo(amount: int) -> void:
 	ammo += amount
+	game.scale_zigzag_forever(game.fireball)

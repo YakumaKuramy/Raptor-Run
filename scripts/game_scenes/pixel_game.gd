@@ -7,11 +7,13 @@ signal game_over
 
 @onready var moving_environment: Node2D = $environment/moving
 @onready var collect_sound: AudioStreamPlayer = $sounds/collect_sound
-@onready var score_label: Label = $HUD/UI/score
-@onready var ammo_label: Label = $HUD/UI/ammo
+@onready var score_label: Label = %score
+@onready var ammo_label: Label = %ammo
 @onready var game_over_label: Label = $HUD/UI/game_over
-@onready var player: CharacterBody2D = $pixel_player
+@onready var player: CharacterBody2D = %pixel_player
 @onready var ground: Area2D = $environment/static/ground
+@onready var fireball: TextureRect = %fireball
+@onready var star: TextureRect = %star
 
 
 var platform: PackedScene = preload("res://scenes/resource/platform.tscn")
@@ -21,9 +23,9 @@ var platform_collectible_row: PackedScene = preload("res://scenes/resource/platf
 var platform_collectible_rainbow: PackedScene = preload("res://scenes/resource/platform_collectible_rainbow.tscn")
 var platform_collectible_ammo: PackedScene = preload("res://scenes/resource/platform_collectible_ammo.tscn")
  
-
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var last_platform_position: Vector2 = Vector2.ZERO
+var star_original_scale: Vector2 
 var next_spawn_time: float = 0.0
 var collectible_pitch: float = 1.0
 var reset_collectible_pitch_time: float = 0.0 
@@ -31,11 +33,16 @@ var score: int = 0
 
 
 func _ready() -> void:
+	star_original_scale = star.scale
 	rng.randomize() 
 	player.player_died.connect(_on_player_died)
 	ground.body_entered.connect(_on_ground_body_entered)
 	var os_name: String = OS.get_name()
 	
+	star.pivot_offset = star.size / 2
+	fireball.pivot_offset = fireball.size / 2
+	rotate_forever(star)
+	rotate_forever(fireball)
 	if os_name == "Android":
 		pass
 	elif os_name == "Web":
@@ -47,10 +54,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	
 	if not player.active:
 		if Input.is_action_just_pressed("ui_up"):
-			get_tree().reload_current_scene()
+			TransitionScreen.restart_game()
 		return
 		
 	if Time.get_ticks_msec() > reset_collectible_pitch_time:
@@ -59,8 +65,8 @@ func _process(_delta: float) -> void:
 	if Time.get_ticks_msec() > next_spawn_time:
 		spawn_next_platform()
 		
-	score_label.text = "Score: %s" % score
-	ammo_label.text = "Ammo: %s" % player.ammo
+	score_label.text = "%s" % score
+	ammo_label.text = "%s" % player.ammo
 
 
 func _physics_process(delta: float) -> void:
@@ -100,6 +106,8 @@ func add_score(value: int) -> void:
 	collect_sound.play()
 	collectible_pitch += 0.1
 	reset_collectible_pitch_time = Time.get_ticks_msec() + collectible_pitch_reset_interval
+	
+	scale_zigzag_forever(star)
 
 
 func _on_player_died() -> void:
@@ -111,3 +119,20 @@ func _on_player_died() -> void:
 func _on_ground_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("player"):
 		player.die()
+
+
+func rotate_forever(target: Node) -> void:
+	var tween: Tween = create_tween()
+	tween.set_loops()
+	tween.tween_property(target, "rotation_degrees", 360.0, 2.0).as_relative().from(0.0)
+
+
+func scale_zigzag_forever(target: Control, scale_amount: float = 0.3, duration: float = 0.1) -> void:
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	var popped_scale: Vector2 = star_original_scale + Vector2(scale_amount, scale_amount)
+	
+	tween.tween_property(target, "scale", popped_scale, duration)
+	tween.tween_property(target, "scale", star_original_scale, duration)
